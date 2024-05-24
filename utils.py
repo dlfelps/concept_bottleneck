@@ -39,6 +39,6 @@ def predict_embeddings(
             else:
                 all_class_names += class_names
 
-    concatenated_embeddings = all_embeddings
+    concatenated_embeddings = torch.cat(all_embeddings)
 
     return concatenated_embeddings,  all_class_names
