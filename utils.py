@@ -33,12 +33,12 @@ def predict_embeddings(
         ):
             if device is not None:
                 images = images.to(device)
-            all_embeddings.append(model(images).detach().cpu())
+            all_embeddings.append(model(images).detach().cpu().numpy())
             if isinstance(class_names, torch.Tensor):
                 all_class_names += class_names.tolist()
             else:
                 all_class_names += class_names
 
-    concatenated_embeddings = torch.cat(all_embeddings)
+    concatenated_embeddings = all_embeddings
 
-    return list(concatenated_embeddings),  all_class_names
+    return concatenated_embeddings,  all_class_names
