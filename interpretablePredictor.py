@@ -1,6 +1,4 @@
 import pickle
-import numpy as np
-
 
 from sklearn.model_selection import GridSearchCV
 from sklearn.preprocessing import  StandardScaler
