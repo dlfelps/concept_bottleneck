@@ -13,21 +13,18 @@ class CAV():
 
   # trains a classifier for each attribute individually
 
-  def __init__(self, X, attributes):
-    self.X = X
-    self.attributes = attributes
-    self.num_attributes = attributes.shape[1]
-    self.concept_predictors = []
+  def __init__(self):
+     self.concept_predictors = []
 
-  def fit(self):
-    for i in range(self.num_attributes):
-      self.concept_predictors.append(self._fit_one(self.attributes[:,i]))
+  def fit(self, X, y):
+    for i in range(y.shape[1]):
+      self.concept_predictors.append(self._fit_one(X, y[:,i]))
 
-  def _fit_one(self, y):
+  def _fit_one(self, X, y):
     pipe = make_pipeline(StandardScaler(with_std=False), PCA(n_components=0.95), LogisticRegression(max_iter=1000))
     param_grid = {'logisticregression__C': [.001, .005, .01, .05, .1, .25, .5, 1]}
     clf = GridSearchCV(pipe, param_grid)
-    clf.fit(self.X,y)
+    clf.fit(X,y)
     return clf.best_estimator_
 
   def predict(self, X):
