@@ -27,7 +27,7 @@ class CAV():
     clf.fit(X,y)
     return clf.best_estimator_
 
-  def predict(self, X):
+  def predict_proba(self, X):
     preds = []
     for cp in self.concept_predictors:
       preds.append(cp.predict_proba(X))
