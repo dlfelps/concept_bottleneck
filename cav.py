@@ -33,6 +33,13 @@ class CAV():
       preds.append(cp.predict_proba(X))
 
     return np.hstack(preds) # [N, 312]
+  
+  def predict_proba(self, X):
+    preds = []
+    for cp in self.concept_predictors:
+      preds.append(cp.predict(X))
+
+    return np.hstack(preds) # [N, 28]
 
   def dump_concept_predictors(self, file='cav.pkl'):
     with open(file, 'wb') as f:
