@@ -34,7 +34,7 @@ class CAV():
 
     return np.hstack(preds) # [N, 312]
   
-  def predict_proba(self, X):
+  def predict(self, X):
     preds = []
     for cp in self.concept_predictors:
       preds.append(cp.predict(X))
