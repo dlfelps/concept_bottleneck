@@ -37,9 +37,9 @@ class CAV():
   def predict(self, X):
     preds = []
     for cp in self.concept_predictors:
-      preds.append(cp.predict(X))
+      preds.append(cp.predict(X).reshape(-1,1))
 
-    return np.hstack(preds) # [N, 28]
+    return np.concatenate(preds, axis=1) # [N, 28]
 
   def dump_concept_predictors(self, file='cav.pkl'):
     with open(file, 'wb') as f:
